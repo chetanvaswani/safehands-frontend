@@ -1,13 +1,25 @@
-import './App.css'
-import Home from './pages/Home'
+import "./App.css";
+import React, { Suspense, useState } from "react";
+import Footer from "./components/Footer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
+const Home = React.lazy(() => import("./pages/Home"));
+
+function App() { 
+  const [currPage, setCurrPage] = useState<"home" | "help" | "account">('home');
 
   return (
-    <div className='w-screen h-screen overflow-hidden'>
-      <Home />
+    <div className="overflow-x-hidden">
+        <BrowserRouter>
+          <Suspense fallback={<div className="text-center mt-10">Loading...</div>}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+            </Routes>
+          </Suspense>
+          <Footer currPage={currPage} setCurrPage={setCurrPage} />
+        </BrowserRouter>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
