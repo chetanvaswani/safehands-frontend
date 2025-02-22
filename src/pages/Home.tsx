@@ -13,9 +13,9 @@ const SERVICES = [
 
 export default function Home() {
   return (
-    <div className="w-full h-full">
+    <div className="w-full flex-col h-full flex overflow-hidden">
       <Location />
-      <div className="flex flex-col items-center h-fit">
+      <div className=" py-5 relative top-[70px] h-[calc(100%-120px)] overflow-y-scroll w-full flex flex-col items-center">
         { SERVICES.map(
           (service, index) => (
             <div
@@ -41,7 +41,7 @@ export default function Home() {
   );
 }
 
-function Location() {
+export function Location() {
   useEffect(() => {
     navigator?.geolocation?.getCurrentPosition(showPosition);
 
@@ -51,11 +51,11 @@ function Location() {
   }, []);
 
   return (
-    <div className="sticky top-0 flex justify-between items-center px-2 py-5 text-black font-bold text-xl border-b-2 border-black/10 bg-white">
+    <div className="fixed z-100 w-full top-0 flex justify-between items-center px-2 py-5 text-black font-bold text-xl border-b-2 border-black/10 bg-white">
       <div className="ml-2">
         <div className="flex items-end">Welcome</div>
         <div className="text-sm text-black/60 flex items-end gap-1">
-          Nehru Nagar Bhilai <IoIosArrowDown />
+          Vaishali Nagar Bhilai <IoIosArrowDown />
         </div>
       </div>
       <TbCurrentLocation className="mr-5 w-8 h-8" />

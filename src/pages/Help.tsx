@@ -6,15 +6,17 @@ export default function Help() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <div className="overflow-hidden">
-      <div className="sticky top-0 bg-white mx-2 text-2xl font-bold p-4 border-b-2 border-black">
-        FAQ's
+    <div className="w-full flex-col h-full flex overflow-hidden">
+      <div className="h-[60px] z-100 w-screen fixed top-0 left-0 bg-white mx-2 text-2xl font-bold border-b-2 border-black">
+        <p className="p-4">
+            FAQ's
+        </p>
       </div>
-      <div className="overflow-x-hidden p-4 h-[calc(100vh-130px)]">
+      <div className="flex flex-col relative top-[60px] p-4 h-[calc(100vh-120px)] overflow-scroll w-full">
         {QnA.map((curr, index) => (
           <div
             key={index}
-            className="bg-gray-100 m-2 p-4 rounded-lg font-semibold"
+            className="bg-gray-100 h-fit m-2 p-4 rounded-lg font-semibold"
             onClick={() => setOpenIndex(openIndex === index ? null : index)}
           >
             <div className="flex justify-between items-center">

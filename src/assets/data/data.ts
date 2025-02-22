@@ -1,3 +1,4 @@
+
 export const QnA : {
     question: String,
     answer: String
