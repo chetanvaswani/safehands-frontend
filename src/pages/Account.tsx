@@ -91,11 +91,6 @@ function generateCalander(){
     // Get the last date of the previous month
     let monthlastdate = new Date(year, month, 0).getDate();
 
-    // console.log("first day of month", dayone)
-    // console.log("last date of month", lastdate)
-    // console.log("day of last date of month", dayend)
-    // console.log("last date of previous month", monthlastdate)
-
     const calander = [];
 
     for (let i=(-(dayone - 1) ); i <= lastdate; i++){

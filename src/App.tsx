@@ -15,7 +15,6 @@ function App() {
         <BrowserRouter>
             <Suspense fallback={<div className="text-center mt-10">Loading...</div>}>
               <Routes>
-                {/* <Route path="/" element={<Location />} /> */}
                 <Route path="/" element={<Home />} />
                 <Route path="/help" element={<Help />} />
                 <Route path="/account" element={<Account />} />
