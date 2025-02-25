@@ -8,7 +8,7 @@ const Help = React.lazy(() => import("./pages/Help"));
 const Account = React.lazy(() => import ("./pages/Account"))
 
 function App() { 
-  const [currPage, setCurrPage] = useState<"home" | "help" | "account">('account');
+  const [currPage, setCurrPage] = useState<"home" | "help" | "account">('home');
 
   return (
     <div className="overflow-hidden flex flex-col justify-start h-dvh w-full">

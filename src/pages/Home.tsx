@@ -4,6 +4,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import Maid from "../assets/maid.png";
 import Cook from "../assets/cook.png";
 import Driver from "../assets/driver.png";
+import Modal from "../components/Modal";
 
 const SERVICES = [ 
     { name: "House Help", img: Maid, active: true },
@@ -15,6 +16,11 @@ export default function Home() {
   return (
     <div className="w-full flex-col h-full flex overflow-hidden">
       <Location />
+      <Modal title="Booking Details" open={true} setOpen={() => {
+
+      }}>
+        <p className="w-full h-fit flex justify-center items-center my-5">Hello world</p>
+      </Modal>
       <div className=" py-5 relative top-[70px] h-[calc(100%-120px)] overflow-y-scroll w-full flex flex-col items-center">
         { SERVICES.map(
           (service, index) => (

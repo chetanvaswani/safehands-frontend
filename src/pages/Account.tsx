@@ -20,10 +20,10 @@ const MONTHS = [
 export default function Account(){
 
     return (
-        <div className="h-full w-full flex flex-col justify-start gap-2 items-center">
+        <div className="h-[100% - 200px] w-full flex flex-col justify-start gap-2 items-center">
             <UserProfile />
             <Dashboard />
-            <div className="w-[90%] mt-5">
+            <div className="w-[90%] mt-3">
                 <div className="font-semibold text-lg">
                     Purchases
                 </div>
@@ -43,7 +43,7 @@ export default function Account(){
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr className="odd:bg-white even:bg-gray-50 border-b border-gray-200">
                                 <th scope="row" className="px-6 py-2 font-medium text-gray-900 whitespace-nowrap">
                                     House Help
                                 </th>
@@ -65,10 +65,37 @@ export default function Account(){
                                     500
                                 </td>
                             </tr>
+                            <tr className="odd:bg-white even:bg-gray-50 border-b border-gray-200">
+                                <th scope="row" className="px-6 py-2 font-medium text-gray-900 whitespace-nowrap">
+                                    House Help
+                                </th>
+                                <td className="px-6 py-2">
+                                    28/12/24
+                                </td>
+                                <td className="px-6 py-2">
+                                    3000
+                                </td>
+                            </tr>
+                            <tr className="odd:bg-white even:bg-gray-50 border-b border-gray-200">
+                                <th scope="row" className="px-6 py-2 font-medium text-gray-900 whitespace-nowrap">
+                                    House Help
+                                </th>
+                                <td className="px-6 py-2">
+                                    28/11/24
+                                </td>
+                                <td className="px-6 py-2">
+                                    3000
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+            {/* <div className="w-[90%]">
+                <button className="w-full bg-black rounded-4xl font-bold text-white p-2 mt-2">
+                    Logout
+                </button>
+            </div> */}
         </div>
     )
 }
@@ -146,7 +173,7 @@ function Dashboard(){
 
 function UserProfile(){
     return (
-        <div className=" m-5 h-[100px] w-[90%] bg-gray-100 flex rounded-4xl border-1 border-dashed border-black">
+        <div className=" m-5 mb-3 h-[100px] w-[90%] bg-gray-100 flex rounded-4xl border-1 border-dashed border-black">
             <div className=" ml-2 w-[25%] h-full flex justify-center items-center">
                 <BiSolidUser className="size-13 border-2 border-black rounded-[50%] p-2" />
             </div>
