@@ -1,26 +1,31 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { TbCurrentLocation } from "react-icons/tb";
 import { IoIosArrowDown } from "react-icons/io";
 import Maid from "../assets/maid.png";
 import Cook from "../assets/cook.png";
 import Driver from "../assets/driver.png";
-import Modal from "../components/Modal";
+import BookingModal from "../components/BookingModal";
 
-const SERVICES = [ 
+export interface servicesInterface{
+  name: string,
+  img: string,
+  active: boolean
+}
+
+const SERVICES : servicesInterface[] = [ 
     { name: "House Help", img: Maid, active: true },
     { name: "Driver", img: Driver, active: true },
     { name: "Cook", img: Cook, active: false },
 ]
 
 export default function Home() {
+  const [bookingModalOpen, setBookingModalOpen] = useState<boolean>(false);
+  const [selectedService, setSelectedService] = useState< servicesInterface | null >(null)
+
   return (
     <div className="w-full flex-col h-full flex overflow-hidden">
       <Location />
-      <Modal title="Booking Details" open={true} setOpen={() => {
-
-      }}>
-        <p className="w-full h-fit flex justify-center items-center my-5">Hello world</p>
-      </Modal>
+      <BookingModal open={bookingModalOpen} selectedService={selectedService} setOpen={setBookingModalOpen} />
       <div className=" py-5 relative top-[70px] h-[calc(100%-120px)] overflow-y-scroll w-full flex flex-col items-center">
         { SERVICES.map(
           (service, index) => (
@@ -32,7 +37,12 @@ export default function Home() {
                 <div className="text-[25px] font-bold tracking-tight font-sans">
                   {service.name}
                 </div>
-                <button disabled={!service.active} className="bg-black w-[150px] text-white outline-noneborder-none px-4 py-2 rounded-4xl transition-all hover:shadow-lg hover:-translate-y-1 active:shadow-inner active:translate-y-1 disabled:opacity-65 disabled:active:translate-y-0">
+                <button disabled={!service.active} onClick={() => {
+                  if ( service.active ){
+                      setBookingModalOpen(true)
+                      setSelectedService(service)
+                    }
+                }} className="bg-black w-[150px] text-white outline-noneborder-none px-4 py-2 rounded-4xl transition-all hover:shadow-lg hover:-translate-y-1 active:shadow-inner active:translate-y-1 disabled:opacity-65 disabled:active:translate-y-0">
                     {
                         service.active ? <p>Book Now</p> : <p>Comming Soon</p>
                     }
