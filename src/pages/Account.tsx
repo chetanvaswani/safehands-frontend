@@ -1,5 +1,5 @@
 import { BiSolidUser } from "react-icons/bi";
-import { MdOutlineEdit } from "react-icons/md";
+import { MdOutlineSettings } from "react-icons/md";
 
 const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const MONTHS = [
@@ -182,7 +182,7 @@ function UserProfile(){
                     <div className="font-semibold !no-underline text-xl -m-1">Chetan Vaswani</div>
                     <div className="font-base !no-underline text-sm">+91 9826874562</div>
                 </div>
-                <MdOutlineEdit  className="size-9 text-black mr-6" />
+                <MdOutlineSettings  className="size-9 text-black mr-6" />
             </div>
         </div>
     )
