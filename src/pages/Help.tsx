@@ -7,12 +7,12 @@ export default function Help() {
 
   return (
     <div className="w-full flex-col h-full flex overflow-hidden">
-      <div className="h-[60px] z-100 w-screen fixed top-0 left-0 bg-white mx-2 text-2xl font-bold border-b-2 border-black">
+      <div className="h-[60px] z-100 w-full top-0 left-0 bg-white mx-2 text-2xl font-bold border-b-2 border-black">
         <p className="p-4">
             FAQ's
         </p>
       </div>
-      <div className="flex flex-col relative top-[60px] p-4 h-[calc(100vh-120px)] overflow-scroll w-full">
+      <div className="flex flex-col relative p-4 h-full overflow-scroll w-full">
         {QnA.map((curr, index) => (
           <div
             key={index}
