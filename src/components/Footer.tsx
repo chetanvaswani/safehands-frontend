@@ -26,7 +26,7 @@ export default function Footer({
   }, [currPage, navigate]);
 
   return (
-    <div className="overflow-hidden fixed bottom-0 left-0 w-full bg-black flex justify-evenly items-center h-[50px]">
+    <div className="overflow-hidden bottom-0 left-0 w-full bg-black flex justify-evenly items-center z-50 h-[50px]">
       <FooterButton name="home" Active={HiHome} InActive={SlHome} currPage={currPage} setCurrPage={setCurrPage} />
       <FooterButton name="help" Active={IoMdHelpCircle} InActive={IoMdHelpCircleOutline} currPage={currPage} setCurrPage={setCurrPage} />
       <FooterButton name="account" Active={RiAccountCircleFill} InActive={VscAccount} currPage={currPage} setCurrPage={setCurrPage} />

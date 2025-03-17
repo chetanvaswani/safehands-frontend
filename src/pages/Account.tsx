@@ -20,7 +20,7 @@ const MONTHS = [
 export default function Account(){
 
     return (
-        <div className="h-[100% - 200px] w-full flex flex-col justify-start gap-2 items-center">
+        <div className="h-full overflow-y-scroll w-full flex flex-col justify-start gap-2 items-center">
             <UserProfile />
             <Dashboard />
             <div className="w-[90%] mt-3">

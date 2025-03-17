@@ -11,7 +11,8 @@ function App() {
   const [currPage, setCurrPage] = useState<"home" | "help" | "account">('home');
 
   return (
-    <div className="overflow-hidden flex flex-col justify-start h-dvh w-full">
+    <div className="w-screen flex md:justify-center" >
+    <div className="overflow-hidden flex flex-col justify-start h-dvh w-full md:w-[70%] lg:w-[50%]">
         <BrowserRouter>
             <Suspense fallback={<div className="text-center mt-10">Loading...</div>}>
               <Routes>
@@ -22,6 +23,7 @@ function App() {
             </Suspense>
           <Footer currPage={currPage} setCurrPage={setCurrPage} />
         </BrowserRouter>
+    </div>
     </div>
   );
 }

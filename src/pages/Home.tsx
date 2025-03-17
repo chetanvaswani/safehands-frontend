@@ -26,7 +26,7 @@ export default function Home() {
     <div className="w-full flex-col h-full flex overflow-hidden">
       <Location />
       <BookingModal open={bookingModalOpen} selectedService={selectedService} setOpen={setBookingModalOpen} />
-      <div className=" py-5 relative top-[70px] h-[calc(100%-120px)] overflow-y-scroll w-full flex flex-col items-center">
+      <div className=" py-5 h-[calc(100%-70px)] overflow-y-scroll w-full flex flex-col items-center">
         { SERVICES.map(
           (service, index) => (
             <div
@@ -67,7 +67,7 @@ export function Location() {
   }, []);
 
   return (
-    <div className="fixed z-100 w-full top-0 flex justify-between items-center px-2 py-5 text-black font-bold text-xl border-b-2 border-black/10 bg-white">
+    <div className=" h-[70px] z-100 w-full top-0 flex justify-between items-center px-2 py-5 text-black font-bold text-xl border-b-2 border-black/10 bg-white">
       <div className="ml-2">
         <div className="flex items-end">Welcome</div>
         <div className="text-sm text-black/60 flex items-end gap-1">
