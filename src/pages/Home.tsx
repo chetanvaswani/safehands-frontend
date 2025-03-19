@@ -1,6 +1,7 @@
 import { TbCurrentLocation } from "react-icons/tb";
 import { servicesInterface } from "../App";
 import LocationSelector from "../components/LocationSelector";
+import { useNavigate } from "react-router-dom";
 
 
 interface HomePageProps{
@@ -9,6 +10,7 @@ interface HomePageProps{
 }
 
 export default function Home({setCurrPage, SERVICES} : HomePageProps) {
+  const navigate = useNavigate()
   return (
     <div className="w-full flex-col h-full flex overflow-hidden">
       <LocationSelector title={"Welcome"} subTitle={"Vaishali Nagar Bhilai"} Icon={<TbCurrentLocation className="mr-5 w-8 h-8" />} />
@@ -25,7 +27,8 @@ export default function Home({setCurrPage, SERVICES} : HomePageProps) {
                 </div>
                 <button disabled={!service.active} onClick={() => {
                   if ( service.active ){
-                      setCurrPage('checkout')
+                      setCurrPage('checkout');
+                      navigate('/checkout')
                   }
                 }} className="bg-black cursor-pointer w-[150px] text-white outline-noneborder-none px-4 py-2 rounded-4xl transition-all hover:shadow-lg hover:-translate-y-1 active:shadow-inner active:translate-y-1 disabled:opacity-65 disabled:active:translate-y-0">
                     {

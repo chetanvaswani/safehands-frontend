@@ -38,8 +38,8 @@ function App() {
                 <Route path="/account" element={<Account />} />
                 <Route path="/checkout" element={<Checkout setCurrPage={setCurrPage} />} />
               </Routes>
+              <Footer currPage={currPage} setCurrPage={setCurrPage} />
             </Suspense>
-          <Footer currPage={currPage} setCurrPage={setCurrPage} />
         </BrowserRouter>
     </div>
     </div>

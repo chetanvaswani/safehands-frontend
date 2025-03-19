@@ -4,6 +4,7 @@ import { IoMdHelpCircleOutline, IoMdHelpCircle } from "react-icons/io";
 import { VscAccount } from "react-icons/vsc";
 import { RiAccountCircleFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 import { useEffect } from "react";
 
 interface FooterProps {
@@ -15,15 +16,16 @@ export default function Footer({
     currPage,
     setCurrPage
 }:FooterProps){
-  const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location.pathname);
 
   useEffect(() => {
-    if (currPage === "home") {
-      navigate("/");
-    } else {
-      navigate(`/${currPage}`);
+    if (location.pathname === "/account"){
+      setCurrPage('account')
+    } else if (location.pathname === "/help"){
+      setCurrPage("help")
     }
-  }, [currPage, navigate]);
+  }, [])
 
   return (
     <div className="overflow-hidden bottom-0 left-0 w-full bg-black flex justify-evenly items-center z-50 h-[60px]">
@@ -50,10 +52,19 @@ interface FooterButtonProps {
 }
 
 function FooterButton({ Active, InActive, name, currPage, setCurrPage }: FooterButtonProps) {
+  const navigate = useNavigate();
   return (
     <div
       className="flex flex-col items-center w-[33%] text-white text-sm cursor-pointer"
-      onClick={() => setCurrPage(name)}
+      onClick={() => {
+        setCurrPage(name)
+        if (name === "home"){
+          navigate(`/`)
+        } else {
+          navigate(`/${name}`)
+        }
+      }}
+
     >
       {currPage === name ? <Active className="w-5 h-5" /> : <InActive className="w-5 h-5" />}
       <div>{toTitleCase(name)}</div>

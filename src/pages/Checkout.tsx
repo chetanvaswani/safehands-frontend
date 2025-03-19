@@ -3,6 +3,7 @@ import { CiDiscount1 } from "react-icons/ci";
 import { HiArrowLongLeft } from "react-icons/hi2";
 import LocationSelector from "../components/LocationSelector";
 import { TbListNumbers } from "react-icons/tb";
+import { useNavigate } from "react-router-dom";
 
 
 type Duration = {
@@ -18,13 +19,15 @@ interface CheckoutPageProps{
 }
 
 export default function Checkout({setCurrPage}: CheckoutPageProps){
+    const navigate = useNavigate()
     const [selectedDuration, setSelectedDuration] = useState<Duration['name']>("once")
 
     return (
         <div className="w-full h-full flex flex-col items-center ">
             <div className="w-[95%] flex justify-center items-center" >
                 <HiArrowLongLeft className="h-[70px] cursor-pointer size-9 ml-2 border-b-2 border-gray-200" onClick={() => {
-                setCurrPage('home')
+                    setCurrPage('home')
+                    navigate("/")
                 }} />
                 <LocationSelector title={"Home"} subTitle={"Vaishali Nagar Bhilai"} />
             </div>
