@@ -1,5 +1,5 @@
 import Modal from "./Modal";
-import { servicesInterface } from "../pages/Home";
+import { servicesInterface } from "../App";
 import { useState } from "react";
 import { CiDiscount1 } from "react-icons/ci";
 
