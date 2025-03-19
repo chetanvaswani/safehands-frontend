@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 interface FooterProps {
-    currPage: "home" | "help" | "account",
-    setCurrPage: (str: "home" | "help" | "account") => void
+    currPage: "home" | "help" | "account" | "checkout",
+    setCurrPage: (str: "home" | "help" | "account" | "checkout") => void
 }
 
 export default function Footer({
@@ -26,10 +26,17 @@ export default function Footer({
   }, [currPage, navigate]);
 
   return (
-    <div className="overflow-hidden bottom-0 left-0 w-full bg-black flex justify-evenly items-center z-50 h-[50px]">
-      <FooterButton name="home" Active={HiHome} InActive={SlHome} currPage={currPage} setCurrPage={setCurrPage} />
-      <FooterButton name="help" Active={IoMdHelpCircle} InActive={IoMdHelpCircleOutline} currPage={currPage} setCurrPage={setCurrPage} />
-      <FooterButton name="account" Active={RiAccountCircleFill} InActive={VscAccount} currPage={currPage} setCurrPage={setCurrPage} />
+    <div className="overflow-hidden bottom-0 left-0 w-full bg-black flex justify-evenly items-center z-50 h-[60px]">
+      {
+        currPage === "checkout" ? <div>
+
+        </div> : 
+        <>
+          <FooterButton name="home" Active={HiHome} InActive={SlHome} currPage={currPage} setCurrPage={setCurrPage} />
+          <FooterButton name="help" Active={IoMdHelpCircle} InActive={IoMdHelpCircleOutline} currPage={currPage} setCurrPage={setCurrPage} />
+          <FooterButton name="account" Active={RiAccountCircleFill} InActive={VscAccount} currPage={currPage} setCurrPage={setCurrPage} />
+        </>
+      }
     </div>
   );
 }
@@ -37,9 +44,9 @@ export default function Footer({
 interface FooterButtonProps {
   Active: React.ElementType,
   InActive: React.ElementType,
-  name: "home" | "help" | "account",
-  currPage: "home" | "help" | "account",
-  setCurrPage: (str: "home" | "help" | "account") => void,
+  name: "home" | "help" | "account" | "checkout",
+  currPage: "home" | "help" | "account" | "checkout",
+  setCurrPage: (str: "home" | "help" | "account" | "checkout") => void,
 }
 
 function FooterButton({ Active, InActive, name, currPage, setCurrPage }: FooterButtonProps) {
@@ -54,6 +61,6 @@ function FooterButton({ Active, InActive, name, currPage, setCurrPage }: FooterB
   );
 }
 
-function toTitleCase(str: string) {
+export function toTitleCase(str: string) {
   return str.replace("_", " ").replace(/(?:^|\s)\w/g, (match) => match.toUpperCase());
 }

@@ -1,31 +1,17 @@
-import { useEffect, useState } from "react";
 import { TbCurrentLocation } from "react-icons/tb";
-import { IoIosArrowDown } from "react-icons/io";
-import Maid from "../assets/maid.png";
-import Cook from "../assets/cook.png";
-import Driver from "../assets/driver.png";
-import BookingModal from "../components/BookingModal";
+import { servicesInterface } from "../App";
+import LocationSelector from "../components/LocationSelector";
 
-export interface servicesInterface{
-  name: string,
-  img: string,
-  active: boolean
+
+interface HomePageProps{
+  setCurrPage: (str: "home" | "help" | "account" | "checkout") => void,
+  SERVICES: servicesInterface[]
 }
 
-const SERVICES : servicesInterface[] = [ 
-    { name: "House Help", img: Maid, active: true },
-    { name: "Driver", img: Driver, active: true },
-    { name: "Cook", img: Cook, active: false },
-]
-
-export default function Home() {
-  const [bookingModalOpen, setBookingModalOpen] = useState<boolean>(false);
-  const [selectedService, setSelectedService] = useState< servicesInterface | null >(null)
-
+export default function Home({setCurrPage, SERVICES} : HomePageProps) {
   return (
     <div className="w-full flex-col h-full flex overflow-hidden">
-      <Location />
-      <BookingModal open={bookingModalOpen} selectedService={selectedService} setOpen={setBookingModalOpen} />
+      <LocationSelector title={"Welcome"} subTitle={"Vaishali Nagar Bhilai"} Icon={<TbCurrentLocation className="mr-5 w-8 h-8" />} />
       <div className=" py-5 h-[calc(100%-70px)] overflow-y-scroll w-full flex flex-col items-center">
         { SERVICES.map(
           (service, index) => (
@@ -39,10 +25,9 @@ export default function Home() {
                 </div>
                 <button disabled={!service.active} onClick={() => {
                   if ( service.active ){
-                      setBookingModalOpen(true)
-                      setSelectedService(service)
-                    }
-                }} className="bg-black w-[150px] text-white outline-noneborder-none px-4 py-2 rounded-4xl transition-all hover:shadow-lg hover:-translate-y-1 active:shadow-inner active:translate-y-1 disabled:opacity-65 disabled:active:translate-y-0">
+                      setCurrPage('checkout')
+                  }
+                }} className="bg-black cursor-pointer w-[150px] text-white outline-noneborder-none px-4 py-2 rounded-4xl transition-all hover:shadow-lg hover:-translate-y-1 active:shadow-inner active:translate-y-1 disabled:opacity-65 disabled:active:translate-y-0">
                     {
                         service.active ? <p>Book Now</p> : <p>Comming Soon</p>
                     }
@@ -53,28 +38,6 @@ export default function Home() {
           )
         )}
       </div>
-    </div>
-  );
-}
-
-export function Location() {
-  useEffect(() => {
-    navigator?.geolocation?.getCurrentPosition(showPosition);
-
-    function showPosition(position: GeolocationPosition) {
-      console.log(position);
-    }
-  }, []);
-
-  return (
-    <div className=" h-[70px] z-100 w-full top-0 flex justify-between items-center px-2 py-5 text-black font-bold text-xl border-b-2 border-black/10 bg-white">
-      <div className="ml-2">
-        <div className="flex items-end">Welcome</div>
-        <div className="text-sm text-black/60 flex items-end gap-1">
-          Vaishali Nagar Bhilai <IoIosArrowDown />
-        </div>
-      </div>
-      <TbCurrentLocation className="mr-5 w-8 h-8" />
     </div>
   );
 }

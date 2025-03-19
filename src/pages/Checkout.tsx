@@ -1,13 +1,9 @@
-import Modal from "./Modal";
-import { servicesInterface } from "../pages/Home";
 import { useState } from "react";
 import { CiDiscount1 } from "react-icons/ci";
+import { HiArrowLongLeft } from "react-icons/hi2";
+import LocationSelector from "../components/LocationSelector";
+import { TbListNumbers } from "react-icons/tb";
 
-interface BookingModalProps{
-    open: boolean,
-    setOpen: (value: boolean) => void,
-    selectedService: servicesInterface | null
-}
 
 type Duration = {
     name:  "once" | "monthly" | "custom";
@@ -17,19 +13,37 @@ type Duration = {
     total: number
 }
 
-export default function BookingModal({
-    open,
-    setOpen,
-    selectedService
-}: BookingModalProps){
+interface CheckoutPageProps{
+    setCurrPage: (str: "home" | "help" | "account" | "checkout") => void
+}
+
+export default function Checkout({setCurrPage}: CheckoutPageProps){
     const [selectedDuration, setSelectedDuration] = useState<Duration['name']>("once")
 
     return (
-        <Modal open={open} title={ selectedService ? `Book ${selectedService?.name}` : "Booking details"} setOpen={setOpen}> 
-            <div className="flex items-center flex-col gap-4 mt-5">
+        <div className="w-full h-full flex flex-col items-center ">
+            <div className="w-[95%] flex justify-center items-center" >
+                <HiArrowLongLeft className="h-[70px] cursor-pointer size-9 ml-2 border-b-2 border-gray-200" onClick={() => {
+                setCurrPage('home')
+                }} />
+                <LocationSelector title={"Home"} subTitle={"Vaishali Nagar Bhilai"} />
+            </div>
+            <div className=" w-[90%] flex items-center flex-col gap-4 mt-5">
                 <BookingDurationSlider selectedDuration={selectedDuration} setSelectedDuration={setSelectedDuration} />
                 <div className="flex bg-gray-100 h-[50px] rounded-lg w-[95%] p-4 items-center">
-                    <input className="bg-gray-100 w-full " placeholder="Enter Cupon Code" />
+                    <input className="bg-gray-100 w-full outline-0 " type="number" placeholder="Enter number of hours" min={1} max={4} onChange={(e) => {
+                        if (parseInt(e.target.value) > 4 || parseInt(e.target.value) < 1){
+                            e.target.value = ""
+                            e.target.placeholder = "Value must be between 1-4"
+                            setTimeout(() => {
+                                e.target.placeholder = "Enter number of hours"
+                            }, 1500)
+                        }
+                    }} />
+                    <TbListNumbers className="size-6 text-gray-500 stroke-[1.5px] " />
+                </div>
+                <div className="flex bg-gray-100 h-[50px] rounded-lg w-[95%] p-4 items-center">
+                    <input className="bg-gray-100 w-full outline-0 " placeholder="Enter Cupon Code" />
                     <CiDiscount1 className="size-7 text-gray-500" />
                 </div>
                 <div className="w-[95%] bg-gray-100 p-4 rounded-xl font-semibold flex flex-col gap-1">
@@ -52,7 +66,7 @@ export default function BookingModal({
                     </div>
                 </div>
             </div>
-        </Modal>
+        </div>
     )
 }
 

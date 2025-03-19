@@ -24,7 +24,7 @@ export default function Modal({
             }} >
                 <div className="h-fit w-[90%] bg-white rounded-xl p-5" >
                     <div className="flex w-full items-center justify-between" >
-                        <div className="font-normal text-xl text-gray-700" >{title}</div>
+                        <div className="text-xl text-black font-normal" >{title}</div>
                         <IoCloseOutline className="size-6 cursor-pointer text-gray-500 rounded-lg hover:bg-gray-100 hover:text-black" onClick={() => {
                             setOpen(false)
                         }} />
