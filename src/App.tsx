@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import Footer from "./components/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Loader from "./components/Loader";
@@ -26,9 +26,14 @@ const SERVICES : servicesInterface[] = [
 
 function App() { 
   const [currPage, setCurrPage] = useState<"home" | "help" | "account" | "checkout">("home");
+  
+  useEffect(() => {
+    window.location.replace('https://helpinghands-india.netlify.app/home');
+  })
 
   return (
     <div className="w-screen flex md:justify-center" >
+
     <div className="overflow-hidden flex flex-col justify-start h-dvh w-full md:w-[70%] lg:w-[50%]">
         <BrowserRouter>
             <Suspense fallback={<div className="w-full h-full bg-gray-100 flex flex-col gap-7 items-center justify-center" ><Loader /> <p className="text-black font-semibold">Loading Content...</p></div>}>
